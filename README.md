@@ -17,7 +17,7 @@ npm install --save-dev netlify-cms-json-exporter
 
 ### Export as `db.json`
 
-```ts
+```js
 import fs from 'fs'
 import { getContent } from 'netlify-cms-json-exporter'
 
@@ -25,6 +25,25 @@ const content = getContent('./public/admin/config.yml', './content')
 
 fs.writeFileSync('db.json', JSON.stringify(content, undefined, 2))
 ```
+
+### Typescript `.d.ts`
+
+```js
+// netlify-cms-exporter.js
+
+import { getContent } from 'netlify-cms-json-exporter'
+
+const content = getContent('./public/admin/config.yml', './content')
+
+console.log(
+  JSON.stringify(content, undefined, 2)
+)
+```
+
+```sh
+node netlify-cms-exporter.js | npx json-ts --stdin --prefix "" > content.d.ts
+```
+
 
 ## Release
 
