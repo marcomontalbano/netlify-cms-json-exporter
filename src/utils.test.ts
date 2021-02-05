@@ -247,5 +247,38 @@ describe('utils', () => {
                 ['people[1].links[1].rel', 'links[0]']
             ])
         })
+
+        it('should not fail if the relation is empty', () => {
+            const content: Content<ContentCollection> = {
+                people: [
+                    {
+                        id: '1',
+                        name: 'John Doe',
+                        links: [
+                            { rel: '' },
+                            { rel: '2' }
+                        ]
+                    }
+                ],
+                links: [
+                    {
+                        id: '1',
+                        url: 'https://example.com/1'
+                    },
+                    {
+                        id: '2',
+                        url: 'https://example.com/2'
+                    }
+                ]
+            };
+
+            expect(
+                resolveRelations([
+                    ['people[0].links[0].rel', 'links'],
+                    ['people[0].links[1].rel', 'links']], content)
+            ).toStrictEqual([
+                ['people[0].links[1].rel', 'links[1]']
+            ])
+        })
     })
 });

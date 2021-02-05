@@ -73,14 +73,20 @@ export const resolveFieldPaths = <T>(yamlRelations: Relation[], content: Content
 }
 
 export const resolveRelations = <T extends { id: string }>(resolvedFieldPaths: Relation[], content: Content<T>): Relation[] => {
-    return resolvedFieldPaths.map(([fieldPath, relation]) => {
+    const resolvedRelations: (Relation | undefined)[] = resolvedFieldPaths.map(([fieldPath, relation]) => {
         const fieldObject = dot.pick(fieldPath, content) as string;
         const relationObject = dot.pick(relation, content) as T[];
         const relationIndex = relationObject.findIndex(obj => obj.id === fieldObject);
+
+        if (relationIndex < 0) {
+            return undefined;
+        }
 
         return [
             fieldPath,
             `${relation}[${relationIndex}]`
         ];
     });
+
+    return resolvedRelations.filter((relation): relation is Relation => relation !== undefined);
 }
