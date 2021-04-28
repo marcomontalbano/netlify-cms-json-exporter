@@ -14,10 +14,22 @@ describe('utils', () => {
         beforeEach(() => {
             mock({
                 '/content/collections': {
-                    'collection-1.json': JSON.stringify({ id: '1', name: 'Collection 1' }),
-                    'collection-2.json': JSON.stringify({ id: '2', name: 'Collection 2' }),
+                    'collection-1.json': JSON.stringify({
+                        id: '1',
+                        name: 'Collection 1',
+                    }),
+                    'collection-2.json': JSON.stringify({
+                        id: '2',
+                        name: 'Collection 2',
+                    }),
+                    'a-non-json-file.txt': '',
                 },
-                '/content/profile.json': JSON.stringify({ id: '1', fullname: 'John Doe' }),
+                '/content/profile.json': JSON.stringify({
+                    id: '1',
+                    fullname: 'John Doe',
+                }),
+                '/content/.DS_Store': 'something here',
+                '/content/another-non-json-file.txt': ':(',
             });
         });
 

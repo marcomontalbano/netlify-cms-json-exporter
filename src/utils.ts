@@ -5,9 +5,14 @@ import nodePath from 'path'
 import { Content, ContentEntries, Relation } from './types'
 
 export const readdirSync = (path: string): string[] => {
-    return nodeFs.readdirSync(path).map((basename) => {
-        return nodePath.resolve(path, basename)
-    })
+    return nodeFs
+        .readdirSync(path)
+        .map((basename) => nodePath.resolve(path, basename))
+        .filter(
+            (basename) =>
+                nodePath.extname(basename) === '.json' ||
+                nodeFs.lstatSync(basename).isDirectory()
+        );
 }
 
 export const readFileAsJson = <T>(file: string): T => {
