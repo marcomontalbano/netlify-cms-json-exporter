@@ -1,6 +1,6 @@
 {
   "name": "netlify-cms-json-exporter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Export all your Netlify CMS contents in a single object with all relations resolved.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
