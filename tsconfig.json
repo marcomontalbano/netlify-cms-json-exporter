@@ -12,7 +12,11 @@
         "strict": true,
         "moduleResolution": "node",
         "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
+
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noUncheckedIndexedAccess": true
     },
     "exclude": [
         "./*.ts",

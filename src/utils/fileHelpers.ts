@@ -1,7 +1,7 @@
 import nodeFs from 'fs'
 import nodePath from 'path'
 
-import { Content, ContentEntries, Relation } from '../types'
+import { ContentEntries } from '../types'
 
 export const readdirSync = (path: string): string[] => {
     return nodeFs
