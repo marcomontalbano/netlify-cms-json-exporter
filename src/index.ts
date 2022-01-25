@@ -1,7 +1,8 @@
 import dot from 'dot-object'
 
 import { Content, ContentCollection } from './types';
-import { readNetlifyContent, resolveFieldPaths, resolveRelations } from './utils';
+import { readNetlifyContent } from './utils/fileHelpers';
+import { resolveFieldPaths, resolveRelations } from './utils/resolver';
 import { getRelationsFromYaml } from './yaml';
 
 export const getContent = (configPath: string, contentPath: string) => {
