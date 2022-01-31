@@ -1,6 +1,9 @@
 # Project
 /db.json
 
+# OS
+.DS_Store
+
 # Logs
 logs
 *.log
