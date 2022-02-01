@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "debug": "node -r tsm example.json-exporter.ts | npx json-ts --stdin --prefix \"\" --rootName Content > db.d.ts",
     "clean": "npx rimraf node_modules */*/node_modules dist coverage",
     "lint": "tsc --noEmit",
     "pretest": "yarn lint",

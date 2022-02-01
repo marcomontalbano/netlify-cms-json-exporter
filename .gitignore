@@ -1,5 +1,6 @@
 # Project
 /db.json
+/db.d.ts
 
 # OS
 .DS_Store

@@ -41,5 +41,5 @@ console.log(
 ```
 
 ```sh
-node netlify-cms-exporter.js | npx json-ts --stdin --prefix "" > content.d.ts
+node netlify-cms-exporter.js | npx json-ts --stdin --prefix "" --rootName Content > db.d.ts
 ```

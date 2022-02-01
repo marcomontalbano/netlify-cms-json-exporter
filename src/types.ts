@@ -41,31 +41,52 @@ type WidgetRelation = BaseWidget & {
 export type Field = WidgetBoolean | WidgetRelation | WidgetList
 
 type File = {
+    label: string;
     name: string;
     file: string;
     fields: Field[];
 }
 
+
 type CollectionTypeFolder = {
-    name: string
     folder: string
     fields: Field[]
 }
 
 type CollectionTypeFiles = {
-    name: string
     files: File[]
 }
 
-export type YamlCollection = CollectionTypeFolder | CollectionTypeFiles
+/** @see https://www.netlifycms.org/docs/configuration-options/#collections */
+export type Collection = {
+    /**
+     * unique identifier for the collection, used as the key when referenced in other contexts (like the relation widget)
+     */
+    name: string
+    /**
+     * label for the collection in the editor UI
+     * @default valueof `name`
+     */
+    label?: string
+    /**
+     * singular label for certain elements in the editor
+     * @default valueof `label`
+     */
+    label_singular?: string
+    /**
+     * optional text, displayed below the label when viewing a collection
+     */
+    description?: string
+
+} & (CollectionTypeFolder | CollectionTypeFiles)
 
 export type ContentCollection = {
     id: string
     [key: string]: unknown
 }
 
-export type Yaml = {
-    collections: YamlCollection[]
+export type ConfigYaml = {
+    collections: Collection[]
 }
 
 export type Relation = [fieldPath: string, relation: string]

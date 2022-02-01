@@ -1,6 +1,7 @@
 import yaml from 'js-yaml'
-import nodeFs from 'fs'
-import { YamlCollection, Field, Relation, Yaml } from './types'
+import { readFileSync } from 'fs'
+
+import { Collection, ConfigYaml, Field, Relation } from './types'
 
 const parseFields = (fields: Field[], prevName: string, memo: Relation[] = []): Relation[] => {
     fields.forEach(field => {
@@ -17,7 +18,7 @@ const parseFields = (fields: Field[], prevName: string, memo: Relation[] = []): 
     return memo
 }
 
-export const getRelations = (items: YamlCollection[]): Relation[] => {
+export const getRelations = (items: Collection[]): Relation[] => {
     return items.reduce((cv, collection) => {
         if ('folder' in collection) {
             return [
@@ -41,6 +42,10 @@ export const getRelations = (items: YamlCollection[]): Relation[] => {
 }
 
 export const getRelationsFromYaml = (path: string): Relation[] => {
-    const document = yaml.load(nodeFs.readFileSync(path, 'utf8')) as Yaml;
+    const document = loadYaml(path);
     return getRelations(document.collections);
 }
+
+export const loadYaml = (path: string): ConfigYaml => {
+    return yaml.load(readFileSync(path, 'utf8')) as ConfigYaml
+};
